@@ -26,17 +26,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
-                <!-- insert random number here -->
+            <div class="col-lg-6" id="randomnumber">
+                insert random number here
             </div>
-            <div class="col-lg-6">
-                <!-- insert wins/losses and win/loss message here -->
+            <div class="col-lg-6" id="winlossmessage">
+                insert wins/losses and win/loss message here
             </div>
         </div>
         <div class="row">
             <!-- I should try to have these images as properties of my crystal objects -->
-            <div class="col-lg-3" id="crystal1">
-                <img src="assets/images/Crystal1pic.png">
+            <div class="col-lg-3">
+                <img id="crystal1" src="assets/images/Crystal1pic.png">
             </div>
             <div class="col-lg-3" id="crystal2">
                 <img src="assets/images/Crystal2pic.png">
@@ -57,35 +57,90 @@
     </div>
    
     
-    <script>
-            $(document).ready(function(event) {
-                var randomNumber = 0;
-                var winsNumber = 0;
-                var lossesNumber = 0;
-                var crystalTotal = 0;
+    <script type="text/javascript">
+            var randomNumber = 0;
+            var winsNumber = 0;
+            var lossesNumber = 0;
+            var crystalTotal = 0;
+            var winMessage = "You Win!  Great Job!";
+            var lostMessage = "You Lost.  Better luck next time.";
+            
+            function winLoss() {
+                if (crystalTotal == randomNumber){
+                    winMessage = document.getElementById("#winlossmessage");
+                    $("#winlossmessage").text(winMessage);
+                    winsNumber += winsNumber;
+                    winsNumber = document.getElementById("#totalscore");
+                    $("totalscore").text(winsNumber);
+                }
+                if (crystalTotal > randomNumber){
+                    lostMessage = document.getElementById("#winlossmessage");
+                    $("#sinlossmessage").text(lostMessage)
+                }
+            }
+
+
+            $(document).ready(function() {
+
                 // I should look to use a randomizer to divide the one random number by another random number instead of defining the value of each crystal; I can do this in the object itself
-                var crystal1Value = 1;
-                var crystal2Value ;
-                var crystal3Value ;
-                var crystal4Value ;
+
                 
-                // returns a number between 25-45
-                randomNumber = Math.floor(math.random()*45)+25; 
-                
-                // defining the crystal 1 object
+ 
+                randomNumber = document.getElementById("#randomnumber");
+                // returns a number between 25-75
+                randomNumber = Math.floor((Math.random()*50)+25);
+                // binds the random number to the text
+                $("#randomnumber").text(randomNumber);
+
+                var crystal1Value = Math.floor((Math.random()*5)+1);
+                var crystal2Value = Math.floor((Math.random()*5)+1);;
+                var crystal3Value = Math.floor((Math.random()*5)+1);;
+                var crystal4Value = Math.floor((Math.random()*5)+1);;
+                // defining the crystal 1 object - not using this right now but I should use objects instead of varibles
                 var crystal1Obj = {
                     value: "1",
-                    objValue: function(){
-                        document.getElementById("#crystal1").value = crystal1Obj.value;
-                    }
+                    // objValue: function(){
+                    //     document.getElementById("#crystal1").value = crystal1Obj.value;
+                    // }
                 }
-
-                // Event listener for on.click - need to understand what "this" is doing in function
-                $(this).on("click", function() {
-                    crystalTotal += $(this).value;
-                    $()
-                })
                 
+                // Binding my crystal 1 object to the picture crystal1 - not using this right now but I should use objects instead of varibles
+                crystal1Obj = document.getElementById("#crystal1");
+                crystalTotal = document.getElementById("#totalguesses");
+
+                // $(this).on("click", function() {
+                    // Event listener for on.click - this didnt work here because of scope
+                $("#crystal1").on("click", function() {
+                    // Attempt to get object to pass value instead of using a variable in JS
+                    // crystalTotal += $("#crystal1").value;
+                    crystalTotal += crystal1Value;
+                    $("#totalguesses").text(crystalTotal);
+                    winLoss();
+                })
+                $("#crystal2").on("click", function() {
+                    // Attempt to get object to pass value instead of using a variable in JS
+                    // crystalTotal += $("#crystal1").value;
+                    crystalTotal += crystal2Value;
+                    $("#totalguesses").text(crystalTotal);
+                    winLoss();
+                })
+                $("#crystal3").on("click", function() {
+                    // Attempt to get object to pass value instead of using a variable in JS
+                    // crystalTotal += $("#crystal1").value;
+                    crystalTotal += crystal3Value;
+                    $("#totalguesses").text(crystalTotal);
+                    winLoss();
+                })
+                $("#crystal4").on("click", function() {
+                    // Attempt to get object to pass value instead of using a variable in JS
+                    // crystalTotal += $("#crystal1").value;
+                    crystalTotal += crystal4Value;
+                    $("#totalguesses").text(crystalTotal);
+                    winLoss();
+                })
+                    
+
+                // })
             })
         </script>
 </body>
