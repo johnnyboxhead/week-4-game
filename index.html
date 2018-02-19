@@ -34,37 +34,60 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3">
-                insert 1st crystal here
+            <!-- I should try to have these images as properties of my crystal objects -->
+            <div class="col-lg-3" id="crystal1">
+                <img src="assets/images/Crystal1pic.png">
             </div>
-            <div class="col-lg-3">
-                insert 2nd crystal here
+            <div class="col-lg-3" id="crystal2">
+                <img src="assets/images/Crystal2pic.png">
             </div>
-            <div class="col-lg-3">
-                insert 2nd crystal here
+            <div class="col-lg-3" id="crystal3">
+                <img src="assets/images/Crystal3pic.png">
             </div>
-            <div class="col-lg-3">
-                insert 2nd crystal here
+            <div class="col-lg-3" id="crystal4">
+                <img src="assets/images/Crystal4pic.png">
             </div>
         </div>
-        <div class="row text-center">
+        <div class="row text-center" id="totalscore">
             Your total score is:
         </div>
-        <div class="row text-center">
+        <div class="row text-center" id="totalguesses">
             Insert total of crystal guesses here
         </div>
     </div>
+   
     
+    <script>
+            $(document).ready(function(event) {
+                var randomNumber = 0;
+                var winsNumber = 0;
+                var lossesNumber = 0;
+                var crystalTotal = 0;
+                // I should look to use a randomizer to divide the one random number by another random number instead of defining the value of each crystal; I can do this in the object itself
+                var crystal1Value = 1;
+                var crystal2Value ;
+                var crystal3Value ;
+                var crystal4Value ;
+                
+                // returns a number between 25-45
+                randomNumber = Math.floor(math.random()*45)+25; 
+                
+                // defining the crystal 1 object
+                var crystal1Obj = {
+                    value: "1",
+                    objValue: function(){
+                        document.getElementById("#crystal1").value = crystal1Obj.value;
+                    }
+                }
+
+                // Event listener for on.click - need to understand what "this" is doing in function
+                $(this).on("click", function() {
+                    crystalTotal += $(this).value;
+                    $()
+                })
+                
+            })
+        </script>
 </body>
-<script>
-    var randomNumber = 0
-    var winsNumber = 0
-    var lossesNumber = 0
-    var crystalTotal = 0
 
-    crystal1 {
-        img:
-
-    }
-</script>
 </html>
