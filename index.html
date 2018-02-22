@@ -27,10 +27,8 @@
         </div>
         <div class="row">
             <div class="col-lg-6" id="randomnumber">
-                insert random number here
             </div>
             <div class="col-lg-6" id="winlossmessage">
-                insert wins/losses and win/loss message here
             </div>
         </div>
         <div class="row">
@@ -62,20 +60,37 @@
             var winsNumber = 0;
             var lossesNumber = 0;
             var crystalTotal = 0;
-            var winMessage = "You Win!  Great Job!";
-            var lostMessage = "You Lost.  Better luck next time.";
+            var winMessage = "You Win!  Great Job!  Press any key to start a new game";
+            var lostMessage = "You Lost.  Better luck next time.  Press any key to start a new game.";
+            
+            
+            function clear() {
+                $("#totalguesses").text("The total of your guesses go here.")
+                $("#winlossmessage").text("");
+                randomNumber = document.getElementById("#randomnumber");
+                // returns a number between 25-75
+                randomNumber = Math.floor((Math.random()*50)+25);
+                // binds the random number to the text
+                $("#randomnumber").text(randomNumber);
+                crystalTotal = 0;
+                var crystal1Value = Math.floor((Math.random()*5)+1);
+                var crystal2Value = Math.floor((Math.random()*5)+1);
+                var crystal3Value = Math.floor((Math.random()*5)+1);
+                var crystal4Value = Math.floor((Math.random()*5)+1);
+            }
             
             function winLoss() {
                 if (crystalTotal == randomNumber){
-                    winMessage = document.getElementById("#winlossmessage");
+                    // winMessage = document.getElementById("#winlossmessage");
                     $("#winlossmessage").text(winMessage);
-                    winsNumber += winsNumber;
-                    winsNumber = document.getElementById("#totalscore");
-                    $("totalscore").text(winsNumber);
+                    winsNumber = winsNumber + 1;
+                    // document.getElementById("#totalscore")
+                    $("#totalscore").text(winsNumber);
+                    clear();
                 }
                 if (crystalTotal > randomNumber){
-                    lostMessage = document.getElementById("#winlossmessage");
-                    $("#sinlossmessage").text(lostMessage)
+                    $("#winlossmessage").text(lostMessage);
+                    clear();
                 }
             }
 
@@ -85,12 +100,12 @@
                 // I should look to use a randomizer to divide the one random number by another random number instead of defining the value of each crystal; I can do this in the object itself
 
                 
- 
-                randomNumber = document.getElementById("#randomnumber");
+                clear();
+                // randomNumber = document.getElementById("#randomnumber");
                 // returns a number between 25-75
-                randomNumber = Math.floor((Math.random()*50)+25);
+                // randomNumber = Math.floor((Math.random()*50)+25);
                 // binds the random number to the text
-                $("#randomnumber").text(randomNumber);
+                // $("#randomnumber").text(randomNumber);
 
                 var crystal1Value = Math.floor((Math.random()*5)+1);
                 var crystal2Value = Math.floor((Math.random()*5)+1);;
